@@ -11,7 +11,7 @@ CloudFormation의 사용성 문제를 생각해 보자.
 ## CDK의 이점
 
 1. 다음 중 좋아하는 언어를 골라서 작성 가능
-    
+   
     TypeScript, JavaScript, Python, Java, C#
     
 2. IDE의 도움을 받음
@@ -29,11 +29,11 @@ CDK는 Construct라는 단위로 자원을 명세한다.
 ## 준비물
 
 1. **Node.js 설치**
-    
+   
     어떤 언어로 CDK를 개발하던 Node.js 10.13 이상의 버전이 필요하다
     
 2. **aws-cdk 툴킷 설치**
-    
+   
     ```bash
     npm install -g aws-cdk
     ```
@@ -54,17 +54,17 @@ CDK는 Construct라는 단위로 자원을 명세한다.
 `cdk diff` - 현재 스택과 CDK 응용의 차이점을 보여준다.
 
 1. 초기 설정 상용구 코드
-    
+   
     ```bash
     cdk init & (npm watch 또는 virtualenv) & cdk bootstrap
     ```
     
 2. Construct 별 API를 잘 참조하기
-    
+   
     [API Reference · AWS CDK](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-construct-library.html)
     
 3. Construct를 코드에서 참조하기 위해 의존성 선언
-    
+   
     ```tsx
     // typescript
     import s3 = require('@aws-cdk-lib/aws-s3');
@@ -73,7 +73,7 @@ CDK는 Construct라는 단위로 자원을 명세한다.
     ```
     
 4. 3에서 의존성을 찾을 수 없을 경우 의존 파일 다운로드 하기
-    
+   
     ```bash
     // typescript
     npm install @aws-cdk-lib/aws-s3
@@ -83,7 +83,7 @@ CDK는 Construct라는 단위로 자원을 명세한다.
     
 5. 코딩하기
 6. 배포하기
-    
+   
     ```bash
     cdk diff
     # cdk synth
@@ -181,7 +181,7 @@ export class CodingEc2Stack extends Stack {
 }
 ```
 
-## ⚠️ 목표 리전 및 계정 상정하기
+## ⚠️ 목표 리전 및 계정 상정하기
 
 방금 EC2 예제에서 `cdk diff`실행시, 어느 리전의 VPC를 가리키는 것인지 맥락이 제공되어 있지 않다며 변경 시뮬레이션을 할 수 없다고 안내된다.
 
@@ -195,7 +195,7 @@ See https://docs.aws.amazon.com/cdk/latest/guide/environments.html for more deta
 
 ### 해법 -  Environment 객체 주입
 
-`**Environment`의 스키마**
+**`Environment`의 스키마**
 
 스택이 배포될 AWS 계정 및 지역을 표상한다.
 
@@ -214,7 +214,7 @@ new CodingEc2Stack(app, 'CodingEc2Stack', {
 });
 ```
 
-**환경 변수 사용하기**
+**주입법2:** 환경 변수
 
 ```tsx
 new CodingEc2Stack(app, 'CodingEc2Stack', { 
